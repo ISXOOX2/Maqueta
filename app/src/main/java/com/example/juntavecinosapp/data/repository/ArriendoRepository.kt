@@ -43,8 +43,7 @@ class ArriendoRepository(private val arriendoDao: ArriendoDao) {
         } catch (e: HttpException) {
             throw Exception(mensajeDeError(e))   // ej: "Ese horario ya está ocupado en ..."
         } catch (e: IOException) {
-            android.util.Log.e("RESERVA", "No llegó al servidor", e)
-            throw Exception("Sin conexión: ${e.javaClass.simpleName} - ${e.message}")
+            arriendoDao.insertar(arriendo)
         }
     }
 
